@@ -164,6 +164,32 @@
         border-bottom: 1px solid var(--gray-medium);
       }
 
+      .sold-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #c0392b 0%, #922b21 100%);
+        color: #fff;
+        font-family: "Playfair Display", serif;
+        font-size: 1.3em;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 12px 30px;
+        border-radius: 4px;
+        margin-top: 15px;
+        box-shadow: 0 4px 15px rgba(192, 57, 43, 0.4);
+        animation: pulse-sold 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse-sold {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.03);
+        }
+      }
+
       /* Carousel Styles */
       .carousel-container {
         position: relative;
@@ -704,8 +730,9 @@
             </div>
           </div>
           <div class="price">Preț: 3.899 RON</div>
-          <p style="color: #7f8c8d; font-size: 0.95em">
-            Negociabil pentru cumpărătorul potrivit
+          <div class="sold-badge">✓ Vândut</div>
+          <p style="color: #7f8c8d; font-size: 0.95em; margin-top: 10px">
+            Mulțumesc pentru interes!
           </p>
           <div
             style="
