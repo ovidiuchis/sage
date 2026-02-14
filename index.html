@@ -542,9 +542,122 @@
           font-size: 14px;
         }
       }
+
+      /* SOLD Overlay Styles */
+      .sold-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(26, 15, 10, 0.85);
+        backdrop-filter: blur(8px);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition:
+          opacity 0.5s ease,
+          visibility 0.5s ease;
+      }
+
+      .sold-overlay.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .sold-banner {
+        background: linear-gradient(135deg, #c0392b 0%, #8e2d1f 100%);
+        color: white;
+        font-family: "Playfair Display", serif;
+        font-size: 4em;
+        font-weight: 700;
+        padding: 30px 100px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        transform: rotate(-15deg);
+        text-align: center;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        position: relative;
+      }
+
+      .sold-banner::before,
+      .sold-banner::after {
+        content: "";
+        position: absolute;
+        top: 10px;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .sold-message {
+        color: var(--cream);
+        font-size: 1.2em;
+        margin-top: 40px;
+        text-align: center;
+        font-weight: 300;
+        transform: rotate(-15deg);
+      }
+
+      .view-details-btn {
+        margin-top: 50px;
+        background: transparent;
+        border: 2px solid var(--accent-gold);
+        color: var(--accent-gold);
+        padding: 15px 40px;
+        font-family: "Work Sans", sans-serif;
+        font-size: 1em;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+      }
+
+      .view-details-btn:hover {
+        background: var(--accent-gold);
+        color: var(--espresso);
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 768px) {
+        .sold-banner {
+          font-size: 2.5em;
+          padding: 20px 50px;
+        }
+
+        .sold-message {
+          font-size: 1em;
+          padding: 0 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .sold-banner {
+          font-size: 1.8em;
+          padding: 15px 30px;
+        }
+      }
     </style>
   </head>
   <body>
+    <!-- SOLD Overlay -->
+    <div class="sold-overlay" id="soldOverlay">
+      <div class="sold-banner">VÂNDUT</div>
+      <p class="sold-message">
+        Pe drum spre noul proprietar.<br />Mulțumesc pentru interes!
+      </p>
+      <button class="view-details-btn" onclick="dismissOverlay()">
+        Vezi detalii aparat
+      </button>
+    </div>
+
     <div class="container">
       <header>
         <h1>Vând Sage Dual Boiler</h1>
@@ -1018,6 +1131,11 @@
       function handleSwipe() {
         if (touchEndX < touchStartX - 50) changeSlide(1); // Swipe left
         if (touchEndX > touchStartX + 50) changeSlide(-1); // Swipe right
+      }
+
+      // Sold overlay dismiss function
+      function dismissOverlay() {
+        document.getElementById("soldOverlay").classList.add("hidden");
       }
     </script>
   </body>
